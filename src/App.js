@@ -22,7 +22,7 @@ class App extends Component {
   handleChange(e) {
     category = e.target.value;
     fetch(
-      `https://opentdb.com/api.php?amount=1&category=${category}&difficulty=easy`
+      `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=easy`
     )
       .then((res) => res.json())
       .then((data) => this.setState({ question: data.results }));
@@ -39,10 +39,10 @@ class App extends Component {
         <hr />
         <select onChange={(e) => this.handleChange(e)}>
           <option>Select a category</option>
-          {categories.map((category) => {
+          {categories.map((cat) => {
             return (
-              <option value={category.id} key={category.id}>
-                {category.value}
+              <option value={cat.id} key={cat.id}>
+                {cat.value}
               </option>
             );
           })}
@@ -50,8 +50,8 @@ class App extends Component {
         <hr />
         <div>
           {this.state.question &&
-            this.state.question.map((question) => {
-              return <Question question={question} key={question.id} />;
+            this.state.question.map((question, index) => {
+              return <Question question={question} key={index} />;
             })}
         </div>
       </div>

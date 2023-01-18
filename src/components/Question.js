@@ -11,16 +11,32 @@ class Question extends React.Component {
     };
 
     // convert all answers into a single array, and randomize the array
-    this.answers = randomizeArray([
-      ...props.question.incorrect_answers,
-      props.question.correct_answer,
-    ]);
+    // this.answers = randomizeArray([
+    //   ...props.question.incorrect_answers,
+    //   props.question.correct_answer,
+    // ]);
   }
 
   handleGuess = (answer) => {
     // set guessed to true, and set guess to the selected answer
     this.setState({ guessed: true, guess: answer });
   };
+
+  // returns a new state object with answers, updates on category change, sets guessed state to false and guess state to empty string
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.question !== prevState.question) {
+      return {
+        answers: randomizeArray([
+          ...nextProps.question.incorrect_answers,
+          nextProps.question.correct_answer,
+        ]),
+        question: nextProps.question,
+        guessed: false,
+        guess: "",
+      };
+    }
+    return null;
+  }
 
   render() {
     return (
@@ -31,7 +47,7 @@ class Question extends React.Component {
         </h4>
 
         <div>
-          {this.answers.map((answer) => (
+          {this.state.answers.map((answer) => (
             <AnswerButton
               key={answer}
               answer={answer}
