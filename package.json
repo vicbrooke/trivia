@@ -11,12 +11,13 @@
   "author": "CalamityAdam",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.20.12",
     "bootstrap": "^5.1.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.18.2",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.18.0",
     "@babel/preset-react": "^7.17.12",
     "@ramseyinhouse/eslint-config": "^1.0.4",
